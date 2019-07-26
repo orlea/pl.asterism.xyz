@@ -1,22 +1,17 @@
 #!/bin/sh
 set -uxe
-pgdump_destination=`path`
-config_destination=`path`
-nowtime=`date +%Y-%m-%d-%H%M`
+destination=`path`
 
 sudo -Hu postgres pg_dump -d pleroma_db --format=custom -f /backup/pleroma.pgdump
-cp /backup/pleroma.pgdump ~/backup/pleroma-${nowtime}.pgdump --force
-cp /opt/pleroma/config/prod.secret.exs ~/backup/prod.secret-${nowtime}.exs
+cp /backup/pleroma.pgdump ~/backup/pleroma.pgdump
+sudo rm -rf /backup/pleroma.pgdump
+cp /etc/nginx/conf.d/pleroma.conf ~/backup/pleroma.conf
+cp /opt/pleroma/config/prod.secret.exs ~/backup/prod.secret.exs
+cp /opt/pleroma/config/keys.secret.exs ~/backup/keys.secret.exs
 
-rclone copy  ~/backup/pleroma-${nowtime}.pgdump ${pgdump_destination}
-rclone copy  ~/backup/prod.secret-${nowtime}.exs ${config_destination}
+rclone copy ~/backup/pleroma.pgdump ${destination}/pg_dump
+rclone copy ~/backup/pleroma.conf ${destination}/nginx
+rclone copy ~/backup/prod.secret.exs ${destination}/pleroma-config
+rclone copy ~/backup/keys.secret.exs ${destination}/pleroma-config
 
-oldfile=`rclone lsf ${pgdump_destination}|sed -n 1p|awk '{print $1}'`
-rclone delete ${pgdump_destination}/${oldfile}
-
-oldfile=`rclone lsf ${config_destination}|sed -n 1p|awk '{print $1}'`
-rclone delete ${config_destination}/${oldfile}
-
-rm -f ~/backup/pleroma-${nowtime}.pgdump
-rm -f ~/backup/prod.secret-${nowtime}.exs
-
+rm -rf ~/backup/*
