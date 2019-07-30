@@ -39,7 +39,7 @@ config :pleroma, :mrf_simple,
 config :pleroma, :chat, enabled: false
 
 config :pleroma, :fetch_initial_posts,
-  enabled: true,
+  enabled: false,
   pages: 1
 
 config :pleroma, Pleroma.Web.Federator.RetryQueue,
@@ -47,6 +47,16 @@ config :pleroma, Pleroma.Web.Federator.RetryQueue,
   max_jobs: 20,
   initial_timeout: 10,
   max_retries: 3
+
+config :pleroma_job_queue, :queues,
+  federator_incoming: 50,
+  federator_outgoing: 50,
+  web_push: 50,
+  mailer: 10,
+  transmogrifier: 20,
+  scheduled_activities: 10,
+  background: 5
+
 
 # Default gitignore is *.secret.exs
 import_config "<your-keys>.secret.exs"
