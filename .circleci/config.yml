@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: docker build -t ${DOCKER_USER}/pleroma -f /home/circleci/project/pleroma/Dockerfile
+          command: docker build -t ${DOCKER_USER}/pleroma -f /home/circleci/project/pleroma/Dockerfile .
       - run:
           command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
       - run:
