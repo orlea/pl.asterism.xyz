@@ -27,7 +27,6 @@ RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma
     && git checkout ${PLEROMA_VER}
 
 COPY config/prod.secret.exs /pleroma/config/prod.secret.exs
-COPY config/keys.secret.exs /pleroma/config/keys.secret.exs
 
 RUN mix local.rebar --force \
     && mix local.hex --force \

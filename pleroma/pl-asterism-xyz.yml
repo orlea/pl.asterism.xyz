@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    image: orlea/pleroma:latest
+    restart: always
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+    ports:
+      - "127.0.0.1:4040:4000"
+    volumes:
+      - /mnt/efs/config/prod.secret.exs:/pleroma/config/prod.secret.exs
+      - /mnt/efs/config/keys.secret.exs:/pleroma/config/keys.secret.exs
+      - /mnt/efs/emoji:/pleroma/priv/static/emoji/custom
+      - /mnt/efs/instance:/pleroma/instance

@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          command: docker build -t ${DOCKER_USER}/pleroma pleroma/Dockerfile
+      - run:
+          command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+      - run:
+          command: docker push ${DOCKER_USER}/pleroma
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+  nightly:
+    jobs:
+      - build
+    triggers:
+      - schedule:
+          cron: "0 * * * *"
+          filters:
+            branches:
+              only:
+                - master

@@ -1,12 +1,7 @@
 #!/bin/sh
 set -uxe
-emoji-bucket=`path`
 
-sudo -Hu pleroma git -C /opt/pleroma pull
-cd /opt/pleroma
-sudo -Hu pleroma MIX_ENV=prod mix deps.get
-sudo -Hu pleroma MIX_ENV=prod mix compile
-sudo systemctl stop pleroma
-sudo -Hu pleroma MIX_ENV=prod mix ecto.migrate
-sudo -Hu pleroma rclone sync wasabi:${emoji-bucket} /opt/pleroma/priv/static/emoji/custom
-sudo systemctl start pleroma
+sudo docker-compose -f ~/pl.asterism.xyz/pleroma/pl-asterism-xyz.manage.yml pull
+sudo docker-compose -f ~/pl.asterism.xyz/pleroma/pl-asterism-xyz.manage.yml run --rm web mix ecto.migrate
+sudo docker stack deploy pleroma -c ~/pl.asterism.xyz/pleroma/pl-asterism-xyz.yml
+sudo docker system prune --force

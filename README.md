@@ -2,13 +2,12 @@
 
 pl.asterism.xyzの設定ファイルや運用スクリプト
 
-Pleroma instance on one AWS Lightsail + Wasabi(Alt AWS S3) + Cloudflare CDN
+Pleroma instance on Docker swarm + Wasabi(Alt AWS S3) + Cloudflare CDN
 
 ## 構成
 
-- Pleroma本体とPostgreSQLはネイティブにインストール
-- リバースプロキシはnginx + certbot
-- Lightsail $5 RAM1GB, vCPU1core
-- メディア用にWasabi S3バケットとCloudflareを使用
-- カスタム絵文字もバケットをrcloneでsync
-- データベースと設定ファイルのバックアップはS3へ転送し、バージョニングとライフサイクルを使い世代管理
+- https://blog.asterism.xyz/posts/2019-08-01/
+- mstdn.asterism.xyzに同居
+- メディア用にWasabiとCloudflareを使用
+- カスタム絵文字やpleroma設定ファイルはEFSを使用
+- データベースのバックアップはS3へ転送し、バージョニングとライフサイクルを使い世代管理
