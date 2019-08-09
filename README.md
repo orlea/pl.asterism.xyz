@@ -11,3 +11,9 @@ Pleroma instance on Docker swarm + Wasabi(Alt AWS S3) + Cloudflare CDN
 - メディア用にWasabiとCloudflareを使用
 - カスタム絵文字やpleroma設定ファイルはEFSを使用
 - データベースのバックアップはS3へ転送し、バージョニングとライフサイクルを使い世代管理
+
+## LICENSE
+
+Dockerfileは以下からforkしています。
+
+https://github.com/angristan/docker-pleroma
