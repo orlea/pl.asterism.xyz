@@ -10,7 +10,10 @@ config :pleroma, :instance,
   dedupe_media: false,
   rewrite_policy: [Pleroma.Web.ActivityPub.MRF.SimplePolicy, Pleroma.Web.ActivityPub.MRF.MediaProxyWarmingPolicy],
   no_attachment_links: true,
-  description: "A pleroma instance for me(@aries@pl.asterism.xyz, @aries@mstdn.asterism.xyz)"
+  description: "A pleroma instance for me(@aries@pl.asterism.xyz, @aries@mstdn.asterism.xyz)",
+  healthcheck: true,
+  account_field_name_length: 1000,
+  account_field_value_length: 1000
 
 config :pleroma, :media_proxy,
   enabled: true,
