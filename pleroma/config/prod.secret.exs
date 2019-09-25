@@ -40,13 +40,8 @@ config :pleroma, :fetch_initial_posts,
   enabled: false,
   pages: 1
 
-config :pleroma, Pleroma.Web.Federator.RetryQueue,
-  enabled: true,
-  max_jobs: 20,
-  initial_timeout: 10,
-  max_retries: 3
-
-config :pleroma_job_queue, :queues,
+config :pleroma, Oban,
+  queues: [
   federator_incoming: 200,
   federator_outgoing: 200,
   web_push: 50,
@@ -54,6 +49,7 @@ config :pleroma_job_queue, :queues,
   transmogrifier: 20,
   scheduled_activities: 100,
   background: 50
+  ]
 
 
 # Default gitignore is *.secret.exs
