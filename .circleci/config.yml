@@ -2,12 +2,10 @@ version: 2
 jobs:
   build:
     machine: true
+    environment:
+      BUILDDATE: $(date "+%Y%m%d-%H")
     steps:
       - checkout
-      - run:
-          command: BUILDDATE=$(date "+%Y%m%d-%H")
-      - run:
-          command: echo ${DOCKER_USER}/pleroma:${BUILDDATE}
       - run:
           command: docker build -t ${DOCKER_USER}/pleroma -f /home/circleci/project/pleroma/Dockerfile . --tag ${BUILDDATE}
       - run:
