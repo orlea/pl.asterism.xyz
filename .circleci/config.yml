@@ -3,7 +3,7 @@ jobs:
   build:
     machine: true
     environment:
-      BUILDDATE: $(date "+%Y%m%d-%H")
+      BUILDDATE: $(echo date "+%Y%m%d-%H")
     steps:
       - checkout
       - run:
