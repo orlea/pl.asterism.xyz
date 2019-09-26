@@ -5,11 +5,13 @@ jobs:
     steps:
       - checkout
       - run:
-          command: docker build -t ${DOCKER_USER}/pleroma -f /home/circleci/project/pleroma/Dockerfile .
+          command: BUILDDATE=$(date "+%Y%m%d-%H")
+      - run:
+          command: docker build -t ${DOCKER_USER}/pleroma:$(BUILDDATE) -f /home/circleci/project/pleroma/Dockerfile .
       - run:
           command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
       - run:
-          command: docker push ${DOCKER_USER}/pleroma
+          command: docker push ${DOCKER_USER}/pleroma:$(BUILDDATE)
 
 workflows:
   version: 2
