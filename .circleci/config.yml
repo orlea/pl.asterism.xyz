@@ -7,7 +7,9 @@ jobs:
       - run:
           command: BUILDDATE=$(date "+%Y%m%d-%H")
       - run:
-          command: docker build -t ${DOCKER_USER}/pleroma:${BUILDDATE} -f /home/circleci/project/pleroma/Dockerfile .
+          command: echo ${DOCKER_USER}/pleroma:${BUILDDATE}
+      - run:
+          command: docker build -t ${DOCKER_USER}/pleroma -f /home/circleci/project/pleroma/Dockerfile . --tag ${BUILDDATE}
       - run:
           command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
       - run:
