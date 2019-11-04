@@ -4,7 +4,7 @@ services:
     image: orlea/pleroma:latest
     restart: always
     deploy:
-      replicas: 1
+      replicas: 2
       placement:
         constraints:
           - node.role == worker
