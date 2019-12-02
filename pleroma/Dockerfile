@@ -4,7 +4,7 @@
 # Copyright (c) 2018 Angristan
 
 
-FROM elixir:1.8-alpine
+FROM elixir:1.9-alpine
 
 ENV UID=911 GID=911 \
     MIX_ENV=prod
