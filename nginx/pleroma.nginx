@@ -33,6 +33,7 @@ server {
 ssl_session_cache shared:ssl_session_cache:10m;
 
 server {
+    access_log  /var/log/nginx/pl.log;
     server_name pl.asterism.xyz;
 
     listen 443 ssl http2;
