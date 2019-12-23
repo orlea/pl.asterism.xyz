@@ -15,3 +15,5 @@ services:
       - /mnt/efs/config/keys.secret.exs:/pleroma/config/keys.secret.exs
       - /mnt/efs/emoji:/pleroma/priv/static/emoji/custom
       - /mnt/efs/instance:/pleroma/instance
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:4040/api/pleroma/healthcheck || exit 1"]
