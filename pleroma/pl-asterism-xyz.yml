@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 services:
   web:
     image: orlea/pleroma:latest
@@ -16,4 +16,5 @@ services:
       - /mnt/efs/emoji:/pleroma/priv/static/emoji/custom
       - /mnt/efs/instance:/pleroma/instance
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:4040/api/pleroma/healthcheck || exit 1"]
+      test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:4000/api/pleroma/healthcheck || exit 1"]
+      start_period: 120s
