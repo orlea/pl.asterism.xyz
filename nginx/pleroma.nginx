@@ -79,7 +79,7 @@ server {
         client_max_body_size 16m;
     }
 
-    location ~ ^/(media|proxy) {
+    location /proxy {
         proxy_cache pleroma_media_cache;
         slice              1m;
         proxy_cache_key    $host$uri$is_args$args$slice_range;
