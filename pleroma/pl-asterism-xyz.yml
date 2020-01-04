@@ -8,6 +8,9 @@ services:
       placement:
         constraints:
           - node.role == worker
+      resources:
+        limits:
+          memory: 512M
     ports:
       - "127.0.0.1:4040:4000"
     volumes:
