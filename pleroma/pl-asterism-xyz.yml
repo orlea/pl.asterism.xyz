@@ -11,10 +11,10 @@ services:
     ports:
       - "127.0.0.1:4040:4000"
     volumes:
-      - /mnt/efs/config/prod.secret.exs:/pleroma/config/prod.secret.exs
-      - /mnt/efs/config/keys.secret.exs:/pleroma/config/keys.secret.exs
-      - /mnt/efs/emoji:/pleroma/priv/static/emoji/custom
-      - /mnt/efs/instance:/pleroma/instance
+      - /mnt/efs/config/prod.secret.exs:/etc/pleroma/config/config.exs
+      - /mnt/efs/config/keys.secret.exs:/etc/pleroma/config/keys.secret.exs
+      - /mnt/efs/emoji:/var/lib/pleroma/static/emoji/custom
+      - /mnt/efs/instance/static/instance:/var/lib/pleroma/static/instance
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider --header 'x-forwarded-proto: https' --proxy=off localhost:4000/api/pleroma/healthcheck || exit 1"]
       start_period: 120s

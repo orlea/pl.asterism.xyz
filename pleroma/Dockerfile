@@ -15,7 +15,11 @@ RUN apk -U upgrade \
     && apk add --no-cache \
        build-base \
        git \
-       imagemagick
+       imagemagick \
+       gcc \
+       g++ \
+       musl-dev \
+       make
 
 RUN addgroup -g ${GID} pleroma \
     && adduser -h /pleroma -s /bin/sh -D -G pleroma -u ${UID} pleroma
@@ -30,9 +34,10 @@ RUN touch /pleroma/config/prod.secret.exs
 
 RUN mix local.rebar --force \
     && mix local.hex --force \
-    && mix deps.get \
-    && mix compile
+    && mix deps.get --only prod \
+    && mkdir release \
+    && mix release --path release
 
 VOLUME /pleroma/uploads/
 
-CMD ["mix", "phx.server"]
+CMD ["./release/bin/pleroma", "start"]
