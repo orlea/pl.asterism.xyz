@@ -11,6 +11,8 @@ services:
       resources:
         limits:
           memory: 512M
+        reservations:
+          memory: 256M
     ports:
       - "127.0.0.1:4040:4000"
     volumes:
