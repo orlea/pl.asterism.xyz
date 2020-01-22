@@ -14,7 +14,7 @@ server {
 
     listen         80;
     listen         [::]:80;
-
+    server_tokens off;
     # Uncomment this if you need to use the 'webroot' method with certbot. Make sure
     # that the directory exists and that it is accessible by the webserver. If you followed
     # the guide, you already ran 'mkdir -p /var/lib/letsencrypt' to create the folder.
@@ -35,7 +35,7 @@ ssl_session_cache shared:ssl_session_cache:10m;
 server {
     access_log  /var/log/nginx/pl.log;
     server_name pl.asterism.xyz;
-
+    server_tokens off;
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
     ssl_session_timeout 5m;
