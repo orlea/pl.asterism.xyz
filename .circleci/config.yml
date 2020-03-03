@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     machine: true
@@ -18,7 +18,7 @@ jobs:
           command: docker push ${DOCKER_USER}/pleroma:$CIRCLE_BUILD_NUM
 
 workflows:
-  version: 2
+  version: 2.1
   commit:
     jobs:
       - build
