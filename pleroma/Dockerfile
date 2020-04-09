@@ -36,7 +36,8 @@ RUN mix local.rebar --force \
     && mix local.hex --force \
     && mix deps.get --only prod \
     && mkdir release \
-    && mix release --path release
+    && mix release --path release \
+    && echo "${OTP_VERSION}" > release/OTP_VERSION
 
 FROM alpine:3.9
 
