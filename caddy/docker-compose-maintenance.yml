@@ -12,9 +12,9 @@ services:
       - public
     volumes:
       - /caddy_data:/data
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile_503:/etc/caddy/Caddyfile
       - /var/log/caddy:/var/log/caddy
-      - error-pl.html:/errorpages/error-pl.html
+      - ./error-pl.html:/errorpages/error-pl.html
 
 networks:
   private:
