@@ -1,0 +1,12 @@
+pl.asterism.xyz {
+  tls admin@asterism.xyz
+  root /errorpages/
+  gzip
+  rewrite .* /
+   status 503 {
+   /
+  }
+  errors {
+    503 error-pl.html
+  }
+}
