@@ -5,6 +5,18 @@ https://pl.asterism.xyz {
   root * /errorpages
   file_server
   encode gzip
-  rewrite * error-pl.html
-  respond * 503
+  #rewrite * error-pl.html
+  respond * 503 {
+    body "<a href=https://mstdn.asterism.xyz>mstdn.asterism.xyz</a>"
+    close
+  }
+  #rewrite * error-pl.html  
+  #handle_errors {
+    #respond * 503 {
+    #  rewrite @503 /error-pl.html
+    #}
+    #rewrite * error-pl.html
+
+  #  file_server
+  #}
 }
