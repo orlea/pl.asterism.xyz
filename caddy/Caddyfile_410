@@ -6,14 +6,14 @@ https://pl.asterism.xyz {
   file_server
   encode gzip
   #rewrite * error-pl.html
-  respond * 503 {
+  respond * 410 {
     body "<a href=https://mstdn.asterism.xyz>mstdn.asterism.xyz</a>"
     close
   }
   #rewrite * error-pl.html  
   #handle_errors {
-    #respond * 503 {
-    #  rewrite @503 /error-pl.html
+    #respond * 410 {
+    #  rewrite @410 /error-pl.html
     #}
     #rewrite * error-pl.html
 
